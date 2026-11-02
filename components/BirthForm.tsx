@@ -143,7 +143,7 @@ export default function BirthForm({ onSubmit, loading, initialData, onFormSave, 
   };
 
   // ─── 样式变量 ────────────────────────────────────────────
-  const bg = isDark ? 'rgba(8,16,40,0.85)' : 'rgba(255,255,255,0.92)';
+  const bg = isDark ? 'rgba(23,32,46,0.88)' : 'rgba(252,248,238,0.9)';
   const border = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(200,160,60,0.2)';
   // 暗色模式标签提亮：从 rgba(74,112,144,1) → rgba(180,200,225,0.9)
   const labelClr = isDark ? 'rgba(180,200,225,0.9)' : 'rgba(120,80,10,0.55)';

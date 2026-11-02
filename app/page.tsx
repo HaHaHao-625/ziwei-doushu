@@ -6,6 +6,9 @@ import StarField from '@/components/StarField';
 import { useTheme, type Theme } from '@/components/ThemeProvider';
 import AnnouncementModal from '@/components/AnnouncementModal';
 
+// 推广/广告位总开关：false = 隐藏首页活动贴纸 + 首访公告弹窗；改为 true 即恢复
+const SHOW_PROMO = false;
+
 // ─── 滚动入场 wrapper ────────────────────────────────────
 function FadeIn({
   children, delay = 0, y = 28, className = '',
@@ -202,9 +205,9 @@ const NI_TEACHINGS = [
 function useColors(theme: Theme) {
   const d = theme === 'dark';
   return {
-    bgBase:       d ? '#020810'                                : '#f5efe0',
+    bgBase:       d ? '#101828'                                : '#ede7da',
     // nav 用与 bgBase 完全相同的不透明色，避免半透明叠加产生色差带
-    navBg:        d ? '#020810'                                : '#f5efe0',
+    navBg:        d ? '#101828'                                : '#ede7da',
     navBorder:    d ? 'rgba(255,255,255,0.05)'                : 'rgba(160,120,30,0.15)',
     goldGrad:     d ? 'linear-gradient(160deg,#c8993a 0%,#f0d070 40%,#c8993a 70%,#f0c755 100%)'
                     : 'linear-gradient(160deg,#6a4206 0%,#9a6a10 40%,#6a4206 70%,#885010 100%)',
@@ -219,22 +222,22 @@ function useColors(theme: Theme) {
     // 冷色 accent（B 方案核心）：呼应暗色 quan 蓝；用于装饰性 glow / 链接 / 高亮
     accent:       d ? '#3a78d4'                               : '#3a5a82',
     accentSoft:   d ? 'rgba(58,120,212,0.18)'                 : 'rgba(58,90,130,0.10)',
-    cardBg:       d ? 'rgba(255,255,255,0.05)'                : 'rgba(255,255,255,0.88)',
+    cardBg:       d ? 'rgba(255,255,255,0.06)'                : 'rgba(255,252,245,0.85)',
     cardBorder:   d ? 'rgba(255,255,255,0.10)'                : 'rgba(200,160,60,0.25)',
-    cardShadow:   d ? '0 4px 32px rgba(0,0,0,0.5)'           : '0 4px 24px rgba(140,100,20,0.12)',
-    featureBg:    d ? 'rgba(255,255,255,0.04)'                : 'rgba(255,255,255,0.75)',
+    cardShadow:   d ? '0 4px 32px rgba(0,0,0,0.42)'           : '0 4px 24px rgba(140,100,20,0.12)',
+    featureBg:    d ? 'rgba(255,255,255,0.05)'                : 'rgba(255,252,245,0.7)',
     featureBord:  d ? 'rgba(255,255,255,0.08)'                : 'rgba(200,160,60,0.2)',
     glowTint:     d ? 'rgba(212,168,67,0.07)'                 : 'rgba(180,140,40,0.06)',
     // 亮色 glow 真用蓝/紫——给整体氛围加冷色点缀
     glowBlue:     d ? 'rgba(40,80,160,0.12)'                  : 'rgba(58,90,130,0.06)',
     glowPurple:   d ? 'rgba(120,50,180,0.08)'                 : 'rgba(96,80,140,0.04)',
-    niBg:         d ? 'rgba(255,255,255,0.04)'                : 'rgba(255,255,255,0.8)',
+    niBg:         d ? 'rgba(255,255,255,0.05)'                : 'rgba(255,252,245,0.75)',
     niBorder:     d ? 'rgba(212,168,67,0.2)'                  : 'rgba(180,130,40,0.25)',
     niDivider:    d ? 'rgba(255,255,255,0.08)'                : 'rgba(180,130,40,0.12)',
-    niCardBg:     d ? 'rgba(255,255,255,0.04)'                : 'rgba(255,255,255,0.9)',
+    niCardBg:     d ? 'rgba(255,255,255,0.05)'                : 'rgba(255,252,245,0.85)',
     niCardBord:   d ? 'rgba(255,255,255,0.08)'                : 'rgba(200,160,60,0.2)',
-    niCardShadow: d ? '0 2px 20px rgba(0,0,0,0.4)'           : '0 2px 16px rgba(140,100,20,0.1)',
-    starBg:       d ? 'rgba(255,255,255,0.04)'                : 'rgba(255,255,255,0.7)',
+    niCardShadow: d ? '0 2px 20px rgba(0,0,0,0.34)'           : '0 2px 16px rgba(140,100,20,0.1)',
+    starBg:       d ? 'rgba(255,255,255,0.05)'                : 'rgba(255,252,245,0.68)',
     starBorder:   d ? 'rgba(212,168,67,0.22)'                 : 'rgba(160,120,30,0.3)',
     starText:     d ? 'rgba(212,168,67,0.7)'                  : 'rgba(120,80,10,0.7)',
     ctaBg:        d ? 'linear-gradient(135deg,#b8892a,#f0d070,#b8892a)'
@@ -243,8 +246,8 @@ function useColors(theme: Theme) {
     footerText:   d ? 'rgba(255,255,255,0.08)'                : '#d0b878',
     scrollLine:   d ? 'rgba(212,168,67,0.3)'                  : 'rgba(140,100,20,0.3)',
     scrollText:   d ? 'rgba(255,255,255,0.12)'                : '#c0a870',
-    altSection:   d ? 'rgba(255,255,255,0.02)'                : 'rgba(255,255,255,0.4)',
-    quoteBg:      d ? 'rgba(212,168,67,0.04)'                 : 'rgba(255,255,255,0.9)',
+    altSection:   d ? 'rgba(255,255,255,0.025)'               : 'rgba(255,252,245,0.35)',
+    quoteBg:      d ? 'rgba(212,168,67,0.05)'                 : 'rgba(255,252,245,0.85)',
   };
 }
 
@@ -464,8 +467,8 @@ export default function HomePage() {
 
   return (
     <div style={{ background: c.bgBase, transition: 'background 0.35s ease' }} className="overflow-x-hidden">
-      {/* 致用户公告——首次访问全屏覆盖，关闭后才进入首页 */}
-      <AnnouncementModal />
+      {/* 致用户公告——首次访问全屏覆盖（SHOW_PROMO 控制） */}
+      {SHOW_PROMO && <AnnouncementModal />}
 
       <StarField />
 
@@ -583,7 +586,8 @@ export default function HomePage() {
           </motion.div>
         </motion.div>
 
-        {/* 上线公告便利贴 — 桌面端绝对定位右侧 */}
+        {/* 上线公告便利贴 — 桌面端绝对定位右侧（SHOW_PROMO 控制） */}
+        {SHOW_PROMO && (
         <motion.div
           initial={{ opacity: 0, x: 30, rotate: 0 }}
           animate={{ opacity: 1, x: 0, rotate: -4 }}
@@ -614,8 +618,10 @@ export default function HomePage() {
             </div>
           </div>
         </motion.div>
+        )}
 
-        {/* 上线公告便利贴 — 手机端正常流式显示（hero 内容下方居中） */}
+        {/* 上线公告便利贴 — 手机端正常流式显示（hero 内容下方居中）（SHOW_PROMO 控制） */}
+        {SHOW_PROMO && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0, rotate: -2 }}
@@ -644,6 +650,7 @@ export default function HomePage() {
             </div>
           </div>
         </motion.div>
+        )}
 
         {/* 滚动提示（绝对定位，不影响 hero opacity 计算） */}
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -661,8 +668,8 @@ export default function HomePage() {
         <div className="absolute inset-0"
           style={{
             background: theme === 'dark'
-              ? 'linear-gradient(to bottom, #020810 0%, #020810 6%, #030a18 22%, #0d0820 40%, #0a0618 68%, #030a18 86%, #020810 100%)'
-              : 'linear-gradient(to bottom, #f5efe0 0%, #f5efe0 6%, #c08055 18%, #6a2810 32%, #1e0a02 50%, #1e0a02 70%, #6a2810 84%, #f5efe0 100%)',
+              ? 'linear-gradient(to bottom, #101828 0%, #101828 6%, #121d2e 22%, #191428 40%, #151226 68%, #121d2e 86%, #101828 100%)'
+              : 'linear-gradient(to bottom, #ede7da 0%, #ede7da 6%, #c08055 18%, #6a2810 32%, #1e0a02 50%, #1e0a02 70%, #6a2810 84%, #ede7da 100%)',
             transition: 'background 0.4s ease',
           }} />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
@@ -1034,7 +1041,7 @@ export default function HomePage() {
         <div className="mx-auto" style={{ maxWidth: '1280px' }}>
           <div className="rounded-2xl p-10 md:p-14 text-center"
             style={{
-              background: theme === 'dark' ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.8)',
+              background: theme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(255,252,245,0.7)',
               border: `1px solid ${c.cardBorder}`,
               boxShadow: c.cardShadow,
             }}>

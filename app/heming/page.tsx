@@ -149,7 +149,7 @@ export default function HemingPage() {
   }, [formA, formB, generateChart]);
 
   const cardStyle = {
-    background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.9)',
+    background: isDark ? 'rgba(255,255,255,0.055)' : 'rgba(255,252,245,0.85)',
     border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(200,160,60,0.2)'}`,
     borderRadius: '16px',
     padding: '24px',
@@ -165,7 +165,7 @@ export default function HemingPage() {
       {/* 顶栏 */}
       <header style={{
         position: 'sticky', top: 0, zIndex: 50,
-        background: isDark ? 'rgba(2,8,16,0.88)' : 'rgba(250,245,235,0.92)',
+        background: isDark ? 'rgba(16,24,40,0.9)' : 'rgba(237,231,218,0.92)',
         backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
         borderBottom: '1px solid var(--bdr)',
         display: 'flex', alignItems: 'center', padding: '0 24px', height: '52px', gap: '16px',

@@ -8,10 +8,10 @@
   --font: -apple-system, 'PingFang SC', 'Helvetica Neue', 'Segoe UI', sans-serif;
   --font-mono: 'SF Mono', 'Menlo', 'Noto Sans Mono', 'Consolas', monospace;
 
-  /* 背景层级 */
-  --bg-0: #FAFAF9;
-  --bg-1: #F4F3EF;
-  --bg-2: #ECEAE4;
+  /* 背景层级（暖纸色，降低纯白亮度） */
+  --bg-0: #EDE7DA;
+  --bg-1: #E6DFD0;
+  --bg-2: #DBD3C1;
   --bg-inv: #0D0D0B;
 
   /* 文字层级 */
@@ -46,8 +46,8 @@
   --sh-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
 
   /* 卡片/内容块背景 */
-  --bg-card: #FFFFFF;
-  --bg-page: #fbf6e8;
+  --bg-card: #F8F4EA;
+  --bg-page: #EDE7DA;
 
   /* 圆角 */
   --r-xs:  4px;
@@ -60,9 +60,10 @@
 
 /* ─── 暗色模式 Token 覆盖 ──────────────────────────────── */
 [data-theme="dark"] {
-  --bg-0: #020810;
-  --bg-1: #0a1020;
-  --bg-2: #141e30;
+  /* 深蓝灰，避免纯黑背景的压迫感 */
+  --bg-0: #101828;
+  --bg-1: #17202E;
+  --bg-2: #202B3C;
   --bg-inv: #f0ede8;
 
   --tx-0: #e8eef6;
@@ -81,13 +82,13 @@
   --bdr-med:  rgba(255,255,255,0.12);
   --bdr-heavy:rgba(255,255,255,0.20);
 
-  --sh-xs: 0 1px 2px rgba(0,0,0,0.3);
-  --sh-sm: 0 2px 8px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
-  --sh-md: 0 4px 20px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.35);
-  --sh-lg: 0 12px 40px rgba(0,0,0,0.6), 0 4px 12px rgba(0,0,0,0.4);
+  --sh-xs: 0 1px 2px rgba(0,0,0,0.24);
+  --sh-sm: 0 2px 8px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.22);
+  --sh-md: 0 4px 20px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.28);
+  --sh-lg: 0 12px 40px rgba(0,0,0,0.48), 0 4px 12px rgba(0,0,0,0.32);
 
-  --bg-card: rgba(255,255,255,0.04);
-  --bg-page: #020810;
+  --bg-card: rgba(255,255,255,0.055);
+  --bg-page: #101828;
 }
 
 /* ─── 全局基础 ───────────────────────────────────────────── */
